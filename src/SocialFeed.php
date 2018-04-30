@@ -534,7 +534,7 @@ class InstagramService extends SocialFeedService {
         $media->video->image = $item->images->standard_resolution->url;
         $media->video->service = 'instagram';
         break;
-      case 'image':
+      default:
         $media->image = $item->images->standard_resolution->url;
         break;
     }
