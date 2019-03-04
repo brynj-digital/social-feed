@@ -489,7 +489,7 @@ class FacebookService extends SocialFeedService
         $request = @file_get_contents($endpoint);
 
         if ($request === false) {
-            throw $this->serviceError('Could not load feed (' . $endpoint .'), check credentials');
+            throw $this->serviceError('Could not load feed (' . $endpoint . '), check credentials');
         }
 
         return json_decode($request);
