@@ -485,10 +485,11 @@ class FacebookService extends SocialFeedService
     protected function getGraph($endpoint, $fields = false)
     {
         $credentials = $this->getCredentials();
-        $request = @file_get_contents(self::API_URL . $endpoint . "?access_token={$credentials->app_id}|{$credentials->app_secret}" . ($fields ? '&fields=' . (implode(',', $fields)) : ''));
+        $endpoint = self::API_URL . $endpoint . "?access_token={$credentials->app_id}|{$credentials->app_secret}" . ($fields ? '&fields=' . (implode(',', $fields)) : '');
+        $request = @file_get_contents($endpoint);
 
         if ($request === false) {
-            throw $this->serviceError('Could not load feed, check credentials');
+            throw $this->serviceError('Could not load feed (' . $endpoint . '), check credentials');
         }
 
         return json_decode($request);
